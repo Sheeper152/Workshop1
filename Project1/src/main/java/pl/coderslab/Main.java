@@ -1,19 +1,27 @@
 package pl.coderslab;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.io.File;
+import java.util.Scanner;
+
 public class Main {
+    static final String FILE_NAME = "tasks.csv";
+    static final String[] OPTIONS = {"add", "remove", "list", "exit"};
+
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        System.out.println(ConsoleColors.BLUE + "Please select an option:");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        System.out.println(ConsoleColors.RESET + "add");
+        System.out.println("remove");
+        System.out.println("list");
+        System.out.println("exit");
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
     }
+    static String[][] tasks;
+
+
+
+
+
 }
+
+

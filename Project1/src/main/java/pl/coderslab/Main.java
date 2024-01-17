@@ -29,6 +29,7 @@ public class Main {
         }
         tasks = PobieranieDanych(FILE_NAME);
         tasks = DodawanieDanych(FILE_NAME);
+        tasks = UsuwanieDanych(FILE_NAME);
     }
 
     static String[][] tasks;
@@ -59,6 +60,33 @@ public class Main {
         }
 
         return tab;
+    }
+
+    public static String[][] UsuwanieDanych(String NazwaPliku) {
+        Path path1 = Paths.get("/home/bartosz/Dokumenty/kurs/Workshop1/Project1/tasks.csv");
+        Scanner scanner = new Scanner(System.in);
+
+        String tab[][] = tasks;
+        int index = 0;
+        try {
+            for (int i = 0; i < tab.length; i++) {
+                System.out.println("Wpisz wiersz do usunięcia.");
+                index = scanner.nextInt();
+                if (index < tab.length) {
+                    tasks = ArrayUtils.remove(tab, index);
+
+                }
+
+
+            }
+
+            main(OPTIONS);
+
+
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Nie ma takiego elementu w tabeli.");
+        }
+        return tasks;
     }
 
     public static String[][] DodawanieDanych(String FileName2) {
@@ -95,46 +123,31 @@ public class Main {
                 System.exit(0);
 
             } else if (dodajZmienna.equals("remove")) {
-                int index = 0;
-                try {
-                for (int i = 0; i < tab.length; i++) {
-                    System.out.println("Wpisz wiersz do usunięcia.");
-                    index = scanner.nextInt();
-                    if (index < tab.length) {
-                        tasks = ArrayUtils.remove( tab,index);
+                tasks = UsuwanieDanych(FILE_NAME);
+
+            } else if (dodajZmienna.equals("list")) {
+
+                for (int i = 0; i < tasks.length; i++) {
+                    System.out.println();
+                    for (int j = 0; j < tasks[i].length; j++) {
+                        System.out.print(Arrays.asList(tasks[i][j]));
                     }
                 }
-                    main(OPTIONS);
+                main(OPTIONS);
+            } else {
+                System.out.println("Please select correct option");
+                main(OPTIONS);
 
-
-            }catch (ArrayIndexOutOfBoundsException ex) {
-                    System.out.println("Nie ma takiego elementu w tabeli.");
-                }
-        } else if (dodajZmienna.equals("list")) {
-
-            for (int i = 0; i < tasks.length; i++) {
-                System.out.println();
-                for (int j = 0; j < tasks[i].length; j++) {
-                    System.out.print(Arrays.asList(tasks[i][j]));
-                }
             }
-            main(OPTIONS);
-        } else {
-            System.out.println("Please select correct option");
-            main(OPTIONS);
+        } catch (
+                IOException exeption) {
+            System.out.println("wpisuj jak nalezy");
 
         }
-    } catch(
-    IOException exeption)
-
-    {
-        System.out.println("wpisuj jak nalezy");
-
-    }
 
 
         return tasks;
-}
+    }
 }
 
 
